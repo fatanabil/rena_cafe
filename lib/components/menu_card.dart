@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:rena_cafe/data/menu_data.dart';
+import 'package:rena_cafe/foods_page.dart';
 
 class MenuCard extends StatefulWidget {
   final String menuName;
   final int menuCost;
   final String menuImg;
-  final VoidCallback addItem;
-  final VoidCallback delItem;
   final String type;
   final int index;
+  final Function()? addItem;
+  final Function()? delItem;
   int qty = 0;
 
   MenuCard({
+    GlobalKey? key,
     this.menuName = '',
     this.menuCost = 0,
     this.menuImg = '',
     this.qty = 0,
     this.type = '',
     this.index = 0,
-    required this.addItem,
-    required this.delItem,
-  });
+    this.addItem,
+    this.delItem,
+  }) : super(key: key);
 
   @override
   State<MenuCard> createState() => _MenuCardState();
@@ -112,14 +114,13 @@ class _MenuCardState extends State<MenuCard> {
                 SizedBox(
                   width: 48,
                   child: TextButton(
-                    onPressed: (){
-                      if(qty > 0) {
+                    onPressed: () {
+                      if (qty > 0) {
                         setState(() {
                           qty--;
                         });
                       }
-                      widget.delItem;
-                      },
+                    },
                     child: Text('-'),
                   ),
                 ),
@@ -128,11 +129,11 @@ class _MenuCardState extends State<MenuCard> {
                   width: 48,
                   child: TextButton(
                     onPressed: () {
+                      widget.addItem;
                       setState(() {
                         qty++;
-                        widget.addItem;
                       });
-                      },
+                    },
                     child: Text('+'),
                   ),
                 ),

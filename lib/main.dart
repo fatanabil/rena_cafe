@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rena_cafe/login_page.dart';
+import 'package:rena_cafe/my_theme.dart';
 
 void main() {
   runApp(const MyApp());

@@ -81,16 +81,16 @@ class _DrinkPageState extends State<DrinkPage> {
                             menuImg: drinks[index]['res'].toString(),
                             index: index,
                             type: 'drinks',
-                            addItem: () {
-                              setState(() {
-                                _addItem(index);
-                              });
-                            },
-                            delItem: () {
-                              setState(() {
-                                _delItem(index);
-                              });
-                            },
+                            // addItem: () {
+                            //   setState(() {
+                            //     _addItem(index);
+                            //   });
+                            // },
+                            // delItem: () {
+                            //   setState(() {
+                            //     _delItem(index);
+                            //   });
+                            // },
                           ),
                         );
                       }),

@@ -66,8 +66,6 @@ class _CartPageState extends State<CartPage> {
                           index: index,
                           qty: items[index]['qty'].hashCode,
                           type: 'order',
-                          addItem: () {},
-                          delItem: () {},
                         ),
                       );
                     },

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:rena_cafe/cart_page.dart';
 import 'package:rena_cafe/data/menu_data.dart';
 import 'components/menu_card.dart';
+import 'data/menu_key.dart';
 
 class FoodPage extends StatefulWidget {
   const FoodPage({Key? key}) : super(key: key);
@@ -15,6 +16,7 @@ class FoodPage extends StatefulWidget {
 }
 
 class _FoodPageState extends State<FoodPage> {
+  var key = MenuKey().foods;
   var foods = MenuData().foods;
   var qty = 0;
 
@@ -73,6 +75,7 @@ class _FoodPageState extends State<FoodPage> {
                         padding: EdgeInsets.zero,
                         key: Key(foods[index].toString()),
                         child: MenuCard(
+                          key: key[index]['foodKey${index}'],
                           menuName: foods[index]['name'].toString(),
                           menuCost: foods[index]['price'].hashCode,
                           menuImg: foods[index]['res'].toString(),
@@ -82,13 +85,16 @@ class _FoodPageState extends State<FoodPage> {
                           addItem: () {
                             setState(() {
                               _addItem(index);
+                              key[index]['foodKey${index}']
+                                  ?.currentState
+                                  ?.setState(() {});
                             });
                           },
-                          delItem: () {
-                            setState(() {
-                              _delItem(index);
-                            });
-                          },
+                          // delItem: () {
+                          //   setState(() {
+                          //     _delItem(index);
+                          //   });
+                          // },
                         ),
                       );
                     },
@@ -112,18 +118,18 @@ class _FoodPageState extends State<FoodPage> {
                 },
                 child: Icon(Icons.shopping_cart_rounded),
               ),
-              // Container(
-              //   child: Center(
-              //     child: Text('${qty}'),
-              //   ),
-              //   padding: EdgeInsets.all(2),
-              //   width: 32,
-              //   height: 32,
-              //   decoration: BoxDecoration(
-              //     color: Colors.amber,
-              //     borderRadius: BorderRadius.circular(16),
-              //   ),
-              // )
+              Container(
+                child: Center(
+                  child: Text('${qty}'),
+                ),
+                padding: EdgeInsets.all(2),
+                width: 32,
+                height: 32,
+                decoration: BoxDecoration(
+                  color: Colors.amber,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              )
             ],
           ),
         ),
