@@ -22,7 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/img/bg-img.png'),
-            fit: BoxFit.fitHeight,
+            fit: BoxFit.cover,
             alignment: Alignment(-1.0, -1.0),
           ),
         ),
