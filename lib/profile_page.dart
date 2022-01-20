@@ -78,7 +78,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  padding: EdgeInsets.symmetric(horizontal: 0),
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: Colors.white,
