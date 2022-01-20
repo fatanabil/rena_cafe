@@ -87,7 +87,9 @@ class _FoodPageState extends State<FoodPage> {
                               _addItem(index);
                               key[index]['foodKey${index}']
                                   ?.currentState
-                                  ?.setState(() {});
+                                  ?.setState(() {
+                                _addItem(index);
+                              });
                             });
                           },
                           // delItem: () {
@@ -118,18 +120,18 @@ class _FoodPageState extends State<FoodPage> {
                 },
                 child: Icon(Icons.shopping_cart_rounded),
               ),
-              Container(
-                child: Center(
-                  child: Text('${qty}'),
-                ),
-                padding: EdgeInsets.all(2),
-                width: 32,
-                height: 32,
-                decoration: BoxDecoration(
-                  color: Colors.amber,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-              )
+              // Container(
+              //   child: Center(
+              //     child: Text('${qty}'),
+              //   ),
+              //   padding: EdgeInsets.all(2),
+              //   width: 32,
+              //   height: 32,
+              //   decoration: BoxDecoration(
+              //     color: Colors.amber,
+              //     borderRadius: BorderRadius.circular(16),
+              //   ),
+              // )
             ],
           ),
         ),
