@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:rena_cafe/data/menu_data.dart';
-import 'package:rena_cafe/foods_page.dart';
 
 class MenuCard extends StatefulWidget {
   final String menuName;
@@ -9,9 +7,9 @@ class MenuCard extends StatefulWidget {
   final String menuImg;
   final String type;
   final int index;
-  final Function()? addItem;
-  final Function()? delItem;
-  int qty = 0;
+  final Function(int) addItem;
+  final Function(int) delItem;
+  int qty;
 
   MenuCard({
     GlobalKey? key,
@@ -21,8 +19,8 @@ class MenuCard extends StatefulWidget {
     this.qty = 0,
     this.type = '',
     this.index = 0,
-    this.addItem,
-    this.delItem,
+    required this.addItem,
+    required this.delItem,
   }) : super(key: key);
 
   @override
@@ -33,23 +31,12 @@ class _MenuCardState extends State<MenuCard> {
   var numberFormat =
       NumberFormat.currency(locale: "id_ID", customPattern: "#,###");
 
-  var menuData;
   var qty = 0;
 
   @override
   void initState() {
     super.initState();
-
-    if (widget.type == 'foods') {
-      menuData = MenuData().foods[widget.index];
-      qty = menuData['qty'];
-    } else if (widget.type == 'drinks') {
-      menuData = MenuData().drinks[widget.index];
-      qty = menuData['qty'];
-    } else if (widget.type == 'order') {
-      menuData = MenuData().order[widget.index];
-      qty = menuData['qty'];
-    }
+    qty = widget.qty;
   }
 
   @override
@@ -59,7 +46,7 @@ class _MenuCardState extends State<MenuCard> {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         width: 350,
         height: 100,
         decoration: BoxDecoration(
@@ -75,17 +62,17 @@ class _MenuCardState extends State<MenuCard> {
                 borderRadius: BorderRadius.circular(8),
                 image: DecorationImage(
                     image: AssetImage(
-                      this.widget.menuImg != ''
-                          ? this.widget.menuImg
+                      widget.menuImg != ''
+                          ? widget.menuImg
                           : 'assets/img/default.jpg',
                     ),
                     fit: BoxFit.fitWidth),
               ),
-              child: AspectRatio(
+              child: const AspectRatio(
                 aspectRatio: 1 / 1,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 16,
             ),
             Column(
@@ -93,48 +80,49 @@ class _MenuCardState extends State<MenuCard> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  this.widget.menuName,
+                  widget.menuName,
                   textAlign: TextAlign.left,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.amber,
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
-                  'Rp. ${numberFormat.format(this.widget.menuCost)}',
+                  'Rp. ${numberFormat.format(widget.menuCost)}',
                   textAlign: TextAlign.left,
-                  style: TextStyle(color: Colors.black45, fontSize: 14),
+                  style: const TextStyle(color: Colors.black45, fontSize: 14),
                 )
               ],
             ),
-            Spacer(),
+            const Spacer(),
             Row(
               children: [
                 SizedBox(
                   width: 48,
                   child: TextButton(
                     onPressed: () {
+                      widget.delItem(widget.index);
                       if (qty > 0) {
                         setState(() {
-                          qty--;
+                          qty = qty - 1;
                         });
                       }
                     },
-                    child: Text('-'),
+                    child: const Text('-'),
                   ),
                 ),
-                Text('${qty}'),
+                Text('$qty'),
                 SizedBox(
                   width: 48,
                   child: TextButton(
                     onPressed: () {
-                      widget.addItem;
+                      widget.addItem(widget.index);
                       setState(() {
-                        qty++;
+                        qty = qty + 1;
                       });
                     },
-                    child: Text('+'),
+                    child: const Text('+'),
                   ),
                 ),
               ],

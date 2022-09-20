@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'foods_page.dart';
 import 'drinks_page.dart';
-import 'my_theme.dart';
-import 'cart_page.dart';
-import 'profile_page.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({Key? key}) : super(key: key);
@@ -17,10 +14,10 @@ class _MenuPageState extends State<MenuPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.only(top: 72),
+        padding: const EdgeInsets.only(top: 72),
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/img/bg-img.png'),
             fit: BoxFit.cover,
@@ -35,12 +32,12 @@ class _MenuPageState extends State<MenuPage> {
                 'assets/img/greeting.png',
                 scale: 2,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 72,
               ),
               GestureDetector(
                 onTap: () {
-                  _navigateToNextScreen(context, FoodPage());
+                  _navigateToNextScreen(context, const FoodPage());
                 },
                 child: Container(
                   height: 150,
@@ -49,7 +46,7 @@ class _MenuPageState extends State<MenuPage> {
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(color: Colors.white, width: 3),
-                    image: DecorationImage(
+                    image: const DecorationImage(
                         image: AssetImage('assets/img/foods.jpg'),
                         fit: BoxFit.cover),
                   ),
@@ -57,14 +54,14 @@ class _MenuPageState extends State<MenuPage> {
                     alignment: Alignment.bottomLeft,
                     child: Container(
                       width: 150,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(8),
                           bottomLeft: Radius.circular(8),
                         ),
                       ),
-                      child: Text(
+                      child: const Text(
                         'FOODS',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -77,12 +74,12 @@ class _MenuPageState extends State<MenuPage> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 36,
               ),
               GestureDetector(
                 onTap: () {
-                  _navigateToNextScreen(context, DrinkPage());
+                  _navigateToNextScreen(context, const DrinkPage());
                 },
                 child: Container(
                   height: 150,
@@ -91,7 +88,7 @@ class _MenuPageState extends State<MenuPage> {
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(color: Colors.white, width: 3),
-                    image: DecorationImage(
+                    image: const DecorationImage(
                         image: AssetImage('assets/img/drinks.jpg'),
                         fit: BoxFit.cover),
                   ),
@@ -101,13 +98,13 @@ class _MenuPageState extends State<MenuPage> {
                       width: 150,
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(8),
                           bottomRight: Radius.circular(8),
                         ),
                         border: Border.all(color: Colors.white, width: 2),
                       ),
-                      child: Text(
+                      child: const Text(
                         'DRINKS',
                         textAlign: TextAlign.center,
                         style: TextStyle(

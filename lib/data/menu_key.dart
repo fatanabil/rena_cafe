@@ -16,15 +16,13 @@ class MenuKey {
   ];
 
   var drinks = [
-    Key('drinkKey1'),
-    Key('drinkKey2'),
-    Key('drinkKey3'),
-    Key('drinkKey4'),
-    Key('drinkKey5'),
-    Key('drinkKey6'),
-    Key('drinkKey7'),
-    Key('drinkKey8'),
-    Key('drinkKey9'),
-    Key('drinkKey10'),
+    GlobalKey(),
+    GlobalKey(),
+    GlobalKey(),
+    GlobalKey(),
+    GlobalKey(),
+    GlobalKey(),
+    GlobalKey(),
+    GlobalKey(),
   ];
 }

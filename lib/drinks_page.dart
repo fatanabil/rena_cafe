@@ -1,8 +1,10 @@
-import 'dart:developer';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:rena_cafe/cart_page.dart';
 import 'package:rena_cafe/data/menu_data.dart';
+import 'package:rena_cafe/data/menu_key.dart';
+
 import 'components/menu_card.dart';
 
 class DrinkPage extends StatefulWidget {
@@ -13,21 +15,28 @@ class DrinkPage extends StatefulWidget {
 }
 
 class _DrinkPageState extends State<DrinkPage> {
-  var drinks = MenuData().drinks;
+  var key = MenuKey().drinks;
+  var drinks = jsonDecode(MenuData().drinks);
   var qty = 0;
 
   void _addItem(int index) {
     setState(() {
-      drinks[index]['qty'] = drinks[index]['qty'].hashCode + 1;
-      qty++;
+      int foodQty = drinks[index]['qty'];
+      drinks[index]['qty'] = foodQty + 1;
+      if (foodQty == 0) {
+        qty = qty + 1;
+      }
     });
   }
 
   void _delItem(int index) {
     setState(() {
-      if (drinks[index]['qty'].hashCode > 0) {
-        drinks[index]['qty'] = drinks[index]['qty'].hashCode - 1;
-        qty--;
+      int foodQty = drinks[index]['qty'];
+      if (foodQty > 0) {
+        drinks[index]['qty'] = foodQty - 1;
+        if (foodQty - 1 == 0) {
+          qty = qty - 1;
+        }
       }
     });
   }
@@ -41,10 +50,10 @@ class _DrinkPageState extends State<DrinkPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.only(top: 56),
+        padding: const EdgeInsets.only(top: 56),
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/img/bg-img.png'),
             fit: BoxFit.cover,
@@ -52,10 +61,10 @@ class _DrinkPageState extends State<DrinkPage> {
           ),
         ),
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
-              Text(
+              const Text(
                 'DRINKS',
                 style: TextStyle(
                   color: Colors.amber,
@@ -63,34 +72,28 @@ class _DrinkPageState extends State<DrinkPage> {
                   fontWeight: FontWeight.w800,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 36,
               ),
               Expanded(
                 child: Container(
                   child: ListView.builder(
-                      padding: EdgeInsets.only(bottom: 100),
+                      padding: const EdgeInsets.only(bottom: 100),
                       itemCount: drinks.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
                           padding: EdgeInsets.zero,
                           key: Key(drinks[index].toString()),
                           child: MenuCard(
+                            key: key[index],
                             menuName: drinks[index]['name'].toString(),
                             menuCost: drinks[index]['price'].hashCode,
                             menuImg: drinks[index]['res'].toString(),
                             index: index,
                             type: 'drinks',
-                            // addItem: () {
-                            //   setState(() {
-                            //     _addItem(index);
-                            //   });
-                            // },
-                            // delItem: () {
-                            //   setState(() {
-                            //     _delItem(index);
-                            //   });
-                            // },
+                            qty: drinks[index]['qty'],
+                            addItem: _addItem,
+                            delItem: _delItem,
                           ),
                         );
                       }),
@@ -105,26 +108,26 @@ class _DrinkPageState extends State<DrinkPage> {
         height: 72,
         child: FittedBox(
           child: Stack(
-            alignment: Alignment(1.6, -2),
+            alignment: const Alignment(1.6, -2),
             children: [
               FloatingActionButton(
                 onPressed: () {
-                  _navigateToNextScreen(context, CartPage());
+                  _navigateToNextScreen(context, const CartPage());
                 },
-                child: Icon(Icons.shopping_cart_rounded),
+                child: const Icon(Icons.shopping_cart_rounded),
               ),
-              // Container(
-              //   child: Center(
-              //     child: Text('${qty}'),
-              //   ),
-              //   padding: EdgeInsets.all(2),
-              //   width: 32,
-              //   height: 32,
-              //   decoration: BoxDecoration(
-              //     color: Colors.amber,
-              //     borderRadius: BorderRadius.circular(16),
-              //   ),
-              // )
+              Container(
+                child: Center(
+                  child: Text('${qty}'),
+                ),
+                padding: const EdgeInsets.all(2),
+                width: 32,
+                height: 32,
+                decoration: BoxDecoration(
+                  color: Colors.amber,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              )
             ],
           ),
         ),

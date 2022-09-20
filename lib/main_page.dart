@@ -15,9 +15,9 @@ class _MainPageState extends State<MainPage> {
   int _selectedNavbar = 0;
 
   final tabs = [
-    Center(child: MenuPage()),
-    Center(child: CartPage()),
-    Center(child: ProfilePage())
+    const Center(child: MenuPage()),
+    const Center(child: CartPage()),
+    const Center(child: ProfilePage())
   ];
 
   void _changeSelectedNavbar(int index) {
@@ -31,7 +31,7 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       body: tabs[_selectedNavbar],
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_rounded),
             label: 'Home',
@@ -53,7 +53,7 @@ class _MainPageState extends State<MainPage> {
         backgroundColor: Colors.white,
         unselectedItemColor: Colors.blue[200],
         selectedItemColor: priBlue,
-        selectedLabelStyle: TextStyle(fontWeight: FontWeight.w700),
+        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w700),
       ),
     );
   }

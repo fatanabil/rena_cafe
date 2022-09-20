@@ -1,9 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:rena_cafe/cart_payment_page.dart';
 import 'package:rena_cafe/data/menu_data.dart';
-import '../my_theme.dart';
-import 'menu_page.dart';
-import 'profile_page.dart';
 import 'components/menu_card.dart';
 
 class CartPage extends StatefulWidget {
@@ -14,21 +13,24 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  var items = MenuData().order;
+  var items = jsonDecode(MenuData().order);
 
   @override
   void initState() {
     super.initState();
   }
 
+  void _addItem(int index) {}
+  void _delItem(int index) {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.only(top: 72),
+        padding: const EdgeInsets.only(top: 72),
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/img/bg-img.png'),
             fit: BoxFit.cover,
@@ -36,10 +38,10 @@ class _CartPageState extends State<CartPage> {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
-              Text(
+              const Text(
                 'CART',
                 style: TextStyle(
                   color: Colors.amber,
@@ -47,29 +49,30 @@ class _CartPageState extends State<CartPage> {
                   fontWeight: FontWeight.w800,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 36,
               ),
               Expanded(
-                child: Container(
-                  child: ListView.builder(
-                    padding: EdgeInsets.only(bottom: 64),
-                    itemCount: items.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        key: Key(items[index].toString()),
-                        padding: EdgeInsets.zero,
-                        child: MenuCard(
-                          menuName: items[index]['name'].toString(),
-                          menuCost: items[index]['price'].hashCode,
-                          menuImg: items[index]['res'].toString(),
-                          index: index,
-                          qty: items[index]['qty'].hashCode,
-                          type: 'order',
-                        ),
-                      );
-                    },
-                  ),
+                child: ListView.builder(
+                  padding: const EdgeInsets.only(bottom: 64),
+                  itemCount: items.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      key: Key(items[index].toString()),
+                      padding: EdgeInsets.zero,
+                      child: MenuCard(
+                        key: GlobalKey(),
+                        menuName: items[index]['name'].toString(),
+                        menuCost: items[index]['price'].hashCode,
+                        menuImg: items[index]['res'].toString(),
+                        index: index,
+                        qty: items[index]['qty'],
+                        type: 'order',
+                        addItem: _addItem,
+                        delItem: _delItem,
+                      ),
+                    );
+                  },
                 ),
               ),
             ],
@@ -84,8 +87,8 @@ class _CartPageState extends State<CartPage> {
                 items: items,
               ));
         },
-        icon: Icon(Icons.payment_rounded),
-        label: Text(
+        icon: const Icon(Icons.payment_rounded),
+        label: const Text(
           'Pay',
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
         ),

@@ -7,7 +7,7 @@ class CartPaymentPage extends StatefulWidget {
   final items;
   int total = 0;
 
-  CartPaymentPage({required this.items});
+  CartPaymentPage({Key? key, required this.items}) : super(key: key);
 
   @override
   _CartPaymentPageState createState() => _CartPaymentPageState();
@@ -21,9 +21,9 @@ class _CartPaymentPageState extends State<CartPaymentPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    for (var i = 0; i < this.widget.items.length; i++) {
-      this.widget.total += this.widget.items[i]['price'].hashCode *
-          widget.items[i]['qty'].hashCode;
+    for (var i = 0; i < widget.items.length; i++) {
+      widget.total +=
+          widget.items[i]['price'].hashCode * widget.items[i]['qty'].hashCode;
     }
   }
 
@@ -31,10 +31,10 @@ class _CartPaymentPageState extends State<CartPaymentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.only(top: 72),
+        padding: const EdgeInsets.only(top: 72),
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/img/bg-img.png'),
             fit: BoxFit.cover,
@@ -42,10 +42,10 @@ class _CartPaymentPageState extends State<CartPaymentPage> {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
-              Text(
+              const Text(
                 'PAYMENT',
                 style: TextStyle(
                   color: Colors.amber,
@@ -53,7 +53,7 @@ class _CartPaymentPageState extends State<CartPaymentPage> {
                   fontWeight: FontWeight.w800,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 56,
               ),
               Material(
@@ -63,11 +63,12 @@ class _CartPaymentPageState extends State<CartPaymentPage> {
                 color: Colors.white,
                 elevation: 5,
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 32, vertical: 24),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
                   width: 350,
                   child: Column(
                     children: [
-                      Text(
+                      const Text(
                         'DETAIL',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -76,13 +77,13 @@ class _CartPaymentPageState extends State<CartPaymentPage> {
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 24,
                       ),
                       Table(
                         border:
                             TableBorder.all(width: 1, style: BorderStyle.none),
-                        columnWidths: {
+                        columnWidths: const {
                           0: FlexColumnWidth(),
                           1: FixedColumnWidth(50),
                           2: FixedColumnWidth(110),
@@ -90,37 +91,37 @@ class _CartPaymentPageState extends State<CartPaymentPage> {
                         defaultVerticalAlignment:
                             TableCellVerticalAlignment.middle,
                         children: [
-                          for (var item in this.widget.items)
+                          for (var item in widget.items)
                             TableRow(
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 8),
                                   child: Text(
                                     '${item['name']}',
-                                    style: TextStyle(fontSize: 16),
+                                    style: const TextStyle(fontSize: 16),
                                   ),
                                 ),
                                 Text(
                                   '${item['qty']}',
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 16),
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                                 Text(
                                   'Rp. ${numberFormat.format(item['price'] * item['qty'])}',
                                   textAlign: TextAlign.end,
-                                  style: TextStyle(fontSize: 16),
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                               ],
                             ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 24,
                       ),
                       Table(
                         border:
                             TableBorder.all(width: 1, style: BorderStyle.none),
-                        columnWidths: {
+                        columnWidths: const {
                           0: FlexColumnWidth(),
                           1: FixedColumnWidth(50),
                           2: FixedColumnWidth(100),
@@ -130,8 +131,8 @@ class _CartPaymentPageState extends State<CartPaymentPage> {
                         children: [
                           TableRow(
                             children: [
-                              Text(''),
-                              Text(
+                              const Text(''),
+                              const Text(
                                 'TOTAL',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
@@ -139,9 +140,9 @@ class _CartPaymentPageState extends State<CartPaymentPage> {
                                 ),
                               ),
                               Text(
-                                'Rp. ${numberFormat.format(this.widget.total)}',
+                                'Rp. ${numberFormat.format(widget.total)}',
                                 textAlign: TextAlign.end,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
@@ -149,14 +150,14 @@ class _CartPaymentPageState extends State<CartPaymentPage> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 36,
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          _pushReplacemnet(context, PaymentSuccessPage());
+                          _pushReplacemnet(context, const PaymentSuccessPage());
                         },
-                        child: Text(
+                        child: const Text(
                           'Pay',
                           style: TextStyle(
                             fontSize: 18,
@@ -164,8 +165,8 @@ class _CartPaymentPageState extends State<CartPaymentPage> {
                           ),
                         ),
                         style: ElevatedButton.styleFrom(
-                          shape: StadiumBorder(),
-                          padding: EdgeInsets.symmetric(
+                          shape: const StadiumBorder(),
+                          padding: const EdgeInsets.symmetric(
                             horizontal: 48,
                             vertical: 10,
                           ),

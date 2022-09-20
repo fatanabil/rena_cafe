@@ -14,10 +14,10 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Container(
-          padding: EdgeInsets.only(top: 72),
+          padding: const EdgeInsets.only(top: 72),
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/img/bg-img.png'),
               fit: BoxFit.cover,
@@ -25,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -33,83 +33,83 @@ class _LoginPageState extends State<LoginPage> {
                   'assets/img/rena-cafe-logo.png',
                   width: 92,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
-                Text(
+                const Text(
                   "RENA CAFE",
                   style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 24,
                       color: Colors.white),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 36,
                 ),
-                Container(
+                SizedBox(
                   height: 36,
                   width: 350,
                   child: TextField(
                     maxLines: 1,
                     decoration: InputDecoration(
                       hintText: 'Name',
-                      hintStyle: TextStyle(color: Colors.black38),
+                      hintStyle: const TextStyle(color: Colors.black38),
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(24),
                       ),
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
                       filled: true,
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
-                Container(
+                SizedBox(
                   height: 36,
                   width: 350,
                   child: TextField(
                     maxLines: 1,
                     decoration: InputDecoration(
                       hintText: 'No Telepon',
-                      hintStyle: TextStyle(color: Colors.black38),
+                      hintStyle: const TextStyle(color: Colors.black38),
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(24),
                       ),
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
                       filled: true,
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
-                Container(
+                SizedBox(
                   height: 36,
                   width: 350,
                   child: TextField(
                     maxLines: 1,
                     decoration: InputDecoration(
                       hintText: 'No Telepon',
-                      hintStyle: TextStyle(color: Colors.black38),
+                      hintStyle: const TextStyle(color: Colors.black38),
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(24),
                       ),
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
                       filled: true,
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 Row(
@@ -117,25 +117,25 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     ElevatedButton(
                       onPressed: () {},
-                      child: Text('Daftar'),
+                      child: const Text('Daftar'),
                       style: ElevatedButton.styleFrom(
-                          primary: Colors.amber,
-                          padding: EdgeInsets.symmetric(horizontal: 36),
-                          shape: StadiumBorder(),
+                          backgroundColor: Colors.amber,
+                          padding: const EdgeInsets.symmetric(horizontal: 36),
+                          shape: const StadiumBorder(),
                           elevation: 0),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 16,
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        _navigateToNextScreen(context, MainPage());
+                        _navigateToNextScreen(context, const MainPage());
                       },
-                      child: Text('Log In'),
+                      child: const Text('Log In'),
                       style: ElevatedButton.styleFrom(
-                          primary: Colors.amber,
-                          padding: EdgeInsets.symmetric(horizontal: 36),
-                          shape: StadiumBorder(),
+                          backgroundColor: Colors.amber,
+                          padding: const EdgeInsets.symmetric(horizontal: 36),
+                          shape: const StadiumBorder(),
                           elevation: 0),
                     ),
                   ],
